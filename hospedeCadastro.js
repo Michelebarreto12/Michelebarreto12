@@ -19,7 +19,6 @@ function adicionarTelefone() {
             </div>
         </div>
     </div>
-
     <div class="col-md-4">
         <div class="col-sm-6">
             <div class="form-floating">
