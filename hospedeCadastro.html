@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Hóspede</title>
+</head>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+
+<body>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/cleave.js@1.6.0/dist/cleave.js"></script>
+
+    <div class="p-10 mb-2 bg-light text-dark">
+
+        <div style="display: flex; justify-content: space-evenly;">
+
+            <form class="needs-validation" novalidate>
+
+                <h1 class="text-center">Cadastro Hóspede</h1><br>
+
+                <h4 class="text-center">Informações Pessoais</h4><br>
+
+                <!-- 
+                row define oque voce quer colocar na linha, no primeiro caso no nome, o cpf e data de Nascimento 
+                estão na mesma linha
+                col-md define o tamanho da coluna, por padrão ele deixa todas as colunas do mesmo tamanho 
+                placeholder serve para colocar nome do label dentro da coluna
+                form-floating serve para que ao clicar o nome colocado no label sobe a consegue digitar vendo o nome
+                col-sm serve para definir a largura da coluna
+             -->
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-floating">
+                            <input class="form-control" type="text" id="floatingInputNome" placeholder="Nome"
+                                name="nome" required>
+
+                            <label for="floatingInputNome" class="form-label">Nome:</label>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="col-sm-15">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="cpf" placeholder="Cpf" name="cpf"
+                                    minlength="11" required> <br>
+                                <label for="floatingInputGrid">CPF:</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="col-sm-11">
+                            <div class="form-floating">
+                                <input type="date" class="form-control" id="meeting_time_data" name="dataNascimento"
+                                    required>
+                                <label for="floatingInputGrid">Data de nascimento:</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="col-sm-13">
+                            <div class="form-floating">
+                                <input type="email" class="form-control" id="floatingInputEmail"
+                                    placeholder="nome@exemplo.com" name="email" required><br>
+                                <label for="floatingInput">E-mail:</label><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="col-sm-12">
+                            <div class="form-floating">
+                                <input type="datetime-local" class="form-control" id="meeting_time" name="entrada"
+                                    required><br>
+                                <label for="floatingInputGrid">Entrada</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="col-sm-11">
+                            <div class="form-floating">
+                                <input type="datetime-local" class="form-control" id="meeting_time_saida" name="saida"
+                                    required><br>
+                                <label for="floatingInputGrid">Saida:</label><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content:center;">
+                    <h4 class="text-center">Endereço</h4><br>
+                    <div style=" margin-top: 7px; margin-left: 15px;" class="d-flex justify-content-center">
+                        <div style="display: none;" class="spinner-border spinner-border-sm" id="spinner" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="col-sm-15">
+                            <div class="form-floating">
+                                <input onblur="pesquisacep(this);" type="text" id="cep" class="form-control"
+                                    placeholder="Cep" name="cep" min="9" required>
+                                <label for="cep">Cep:</label><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="col-sm-13">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="rua" placeholder="Rua" name="rua" required>
+                                <label for="rua">Rua:</label><br>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="col-sm-11">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="bairro" placeholder="Bairro" name="bairro"
+                                    required>
+                                <label for="bairro">Bairro:</label><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <div class="col-sm-6">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="numero" placeholder="Numero" name="numero"
+                                    required>
+                                <label for="numero">Número:</label><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-sm-9">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="cidade" placeholder="Cidade" name="cidade"
+                                    disabled required>
+                                <label for="cidade">Cidade:</label><br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="col-sm-10">
+                            <div class="form-floating">
+                                <input type="text" class="form-control" id="uf" placeholder="Estado" name="estado"
+                                    disabled required>
+                                <label for="estado">Estado:</label><br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div class="col-md">
+                    <div class="form-floating">
+
+                        <div id="telefones-container">
+                            <div style="display: flex; justify-content: center;">
+
+                                <div class="col-1">
+                                    <h4 class="text-center">Telefone</h4>
+                                </div>
+
+                                <div class="col-1">
+                                    <button onclick="adicionarTelefone()" type="button"
+                                        class="btn btn-primary btn-sm rounded-circle position-relative top-25 start-50">
+                                        <i class="bi bi-plus-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="telefone"><br>
+                                <div class="row">
+                                    <div class="col-md">
+                                        <div class="col-sm-7">
+                                            <div class="form-floating">
+                                                <input type="text" data-ls-module="charCounter" class="form-control"
+                                                    id="codigoPais" placeholder="Codigo do País" name="codigoPais"
+                                                    maxlength="2" required>
+                                                <label for="codigoPais">Codigo do País:</label><br>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md">
+                                        <div class="col-sm-6">
+                                            <div class="form-floating">
+
+                                                <input type="text" class="form-control" id="ddd" placeholder="DDD"
+                                                    name="ddd" required>
+                                                <label for="ddd">DDD:</label><br>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md">
+                                        <div class="col-sm-11">
+                                            <div class="form-floating">
+
+                                                <input type="text" class="form-control" id="numeroTelefone"
+                                                    placeholder="Número do telefone" name="numeroTelefone" required>
+                                                <label for="numeroTelefone">Número:</label><br><br>
+
+                                                <div class="position-absolute top-50 end-0">
+                                                    <button style="margin-top: auto;" onclick="deletarTelefone(this)"
+                                                        type="button" class="btn btn-danger btn-sm" hidden>
+                                                        <i class="bi bi-trash-fill"></i>
+                                                    </button>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: none;" id="myAlert" class="alert alert-danger" role="alert" >
+                    Erro ao cadastrar o hóspede
+                  </div>
+                <div style="display: flex; justify-content: flex-end;">
+                    <br><button id="btnCadastrar" type="button" class="btn btn-sm btn-success">Cadastrar</button>
+                </div>
+
+            </form>
+
+        </div>
+        <script src="hospedeCadastro.js"></script>
+
+    </div>
+</body>
+
+</html>
